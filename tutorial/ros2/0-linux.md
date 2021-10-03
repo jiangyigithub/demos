@@ -67,4 +67,16 @@ sudo systemctl restart docker
 docker system prune -a --volumes https://stackoverflow.com/questions/44785585/docker-how-to-delete-all-local-docker-images
 ```
 
+## dockerfile
+```dockerfile
+ARG BASE_IMAGE=nvcr.io/nvidia/l4t-base:r32.4.3
+FROM ${BASE_IMAGE}
+COPY ./packages/ros_entrypoint.sh /ros_entrypoint.sh
+RUN echo 'source ${ROS_ROOT}/setup.bash' >> /root/.bashrc 
+RUN chmod +x /ros_entrypoint.sh
+ENTRYPOINT ["/ros_entrypoint.sh"]
+CMD ["bash"]
+WORKDIR /
+```
+
 
