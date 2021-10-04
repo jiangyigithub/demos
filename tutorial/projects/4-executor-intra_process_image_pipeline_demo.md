@@ -37,6 +37,8 @@ colcon build --packages-select intra_process_demo
 ros2 run intra_process_demo image_view_node # terminal 1
 ros2 run intra_process_demo watermark_node # terminal 2
 ros2 run intra_process_demo camera_node #terminal 3
+or:
+./install/intra_process_demo/lib/intra_process_demo/camera_node
 ```
 
 ## git file config

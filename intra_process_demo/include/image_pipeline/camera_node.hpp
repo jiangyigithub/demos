@@ -40,7 +40,7 @@ public:
   {
     // Initialize OpenCV
     // cap_.open(device);
-    cap_.open("/home/jiangyi/data/chaplin.mp4");
+    cap_.open("/home/jiangyi/code/demos/tutorial/data/chaplin.mp4");
     // TODO(jacobperron): Remove pre-compiler check when we drop support for Xenial
 #if CV_MAJOR_VERSION < 3
     cap_.set(CV_CAP_PROP_FRAME_WIDTH, static_cast<double>(width));
