@@ -33,12 +33,23 @@ colcon build --packages-select intra_process_demo
 ```
 
 ## ros run/launch
+1. three nodes three process--> communication by RMW
 ```bash
 ros2 run intra_process_demo image_view_node # terminal 1
 ros2 run intra_process_demo watermark_node # terminal 2
 ros2 run intra_process_demo camera_node #terminal 3
-or:
+# or:
 ./install/intra_process_demo/lib/intra_process_demo/camera_node
+```
+
+2. tree nodes one process, intra-process for 1 publisher to 1 subscription--> zero copy by intra_process
+```bash
+ros2 run intra_process_demo image_pipeline_all_in_one
+```
+
+3. tree nodes one process, intra-process for 1 publiser to muti subscription--> copy n-1 data for 1 pub to n sub scenario
+```bash
+ros2 run intra_process_demo image_pipeline_with_two_image_view
 ```
 
 ## git file config
