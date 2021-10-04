@@ -35,6 +35,7 @@ Ctrl+Shift+5
   https://www.pragmaticlinux.com/2021/02/how-to-mount-a-shared-folder-in-virtualbox/#:~:text=Mount%20a%20shared%20folder%20manually.%20After%20disabling%20the,following%20command%20to%20manually%20mount%20the%20shared%20folder%3A
 
 - share copy from windows
+  Specifying a specific mount point: https://www.pragmaticlinux.com/2021/02/how-to-mount-a-shared-folder-in-virtualbox/#:~:text=Mount%20a%20shared%20folder%20manually.%20After%20disabling%20the,following%20command%20to%20manually%20mount%20the%20shared%20folder%3A
 
 - share host VPN to virual linux
   network 1 --> Host-Only
