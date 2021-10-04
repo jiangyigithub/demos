@@ -1,7 +1,7 @@
 # Project: intra_process_image_pipeline_demo --> executor
 
 ## adapt opencv source from video
-https://blog.csdn.net/qq_16893195/article/details/113728729?spm=1001.2014.3001.5501
+- https://blog.csdn.net/qq_16893195/article/details/113728729?spm=1001.2014.3001.5501
 
 - video file: ./tutorial/data/chaplin.mp4
 
@@ -60,6 +60,7 @@ log/
 ```
 
 # code demo
+```c++
 rclcpp::executors::SingleThreadedExecutor executor(...)
 executor.add_node(Node xxx)
 executor.spin()
@@ -67,8 +68,9 @@ executor.spin()
 rclcpp::executors::MultiThreadedExecutor executor(...)
 executor.add_node(Node xxx)
 executor.spin()
+```
 
 # reference
-https://docs.ros.org/en/foxy/Tutorials/Intra-Process-Communication.html?highlight=rclcpp%20executors
-https://blog.csdn.net/qq_16893195/article/details/113123386
-https://vimeo.com/292707644
+- https://docs.ros.org/en/foxy/Tutorials/Intra-Process-Communication.html?highlight=rclcpp%20executors
+- https://blog.csdn.net/qq_16893195/article/details/113123386
+- https://vimeo.com/292707644
