@@ -32,7 +32,7 @@ node
 point to point
 1 to multi
 
-## exchange nodes message
+## communication model --> exchange nodes message
 - 1. publisher-subscriber model
 topic(单向)
 publiser
@@ -45,11 +45,14 @@ client
 server
 srv(request-response)
 
-## nodes integration, relationship with middleware and opteration system
+## nodes communication mechanism
+DDS (middleware)
+intra_process (config node option, set "use_intra_process_comms")
+
+## integrate nodes as execuable, relationship with middleware and opteration system
 executor
 single/multi process
 single/multi thread
-intra_process/middleware(config node option, set "use_intra_process_comms")
 ```
 (key words: Publisher/Subscriber/Topic//Nodes/Services/Quality of Service/ROS Client Library --> rclcpp)
 - ROS2 concept
