@@ -23,7 +23,7 @@ ros2 run examples_rclcpp_minimal_client  client_main
 
 ```c++
 create_client<srv>("service")
-create_service<srv>("service",callback)
+create_service<srv>("service",service_callback)
 // callback requrst--> response
 service_callback(request_header,request,response)
 ```
