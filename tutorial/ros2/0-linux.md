@@ -41,6 +41,9 @@ Ctrl+Shift+5
   network 1 --> Host-Only
   network 2 --> NAT
 
+- input methods
+  sougou input method --> Ctrl + SPACE
+
 # docker
 https://docs.docker.com/get-started/overview/
 
