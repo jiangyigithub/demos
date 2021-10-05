@@ -39,8 +39,6 @@ ros2 run examples_rclcpp_minimal_publisher publisher_member_function # terminal 
 ros2 run examples_rclcpp_minimal_subscriber subscriber_member_function # termianl 2
 ```
 # code deme
-- Writing a simple publisher and subscriber --> implement node code
-https://docs.ros.org/en/foxy/Tutorials/Writing-A-Simple-Cpp-Publisher-And-Subscriber.html
 ```//comment
 For the publisher node, spinning meant starting the timer, but for the subscriber it simply means preparing to receive messages whenever they come
 ```
@@ -68,5 +66,7 @@ For the publisher node, spinning meant starting the timer, but for the subscribe
     
 ```
 
-# detail code
+# refenrence
+- https://docs.ros.org/en/foxy/Tutorials/Topics/Understanding-ROS2-Topics.html
+- https://docs.ros.org/en/foxy/Tutorials/Writing-A-Simple-Cpp-Publisher-And-Subscriber.html
 - https://blog.csdn.net/qq_16893195/article/details/112983147

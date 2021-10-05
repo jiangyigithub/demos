@@ -1,13 +1,5 @@
-# concept
-service
-client
-server
-srv(request-response)
-
-topic
-publiser
-subscribtion
-msg
+# repo
+https://github.com/ros2/examples/tree/foxy/rclcpp/services
 
 # check for missing dependencies before building
 rosdep install -i --from-path xxx --rosdistro foxy -y
@@ -21,6 +13,7 @@ colcon build --packages-select examples_rclcpp_minimal_client
 ros2 run examples_rclcpp_minimal_service service_main
 ros2 run examples_rclcpp_minimal_client  client_main
 
+# code demo c++
 ```c++
 create_client<srv>("service")
 create_service<srv>("service",service_callback)

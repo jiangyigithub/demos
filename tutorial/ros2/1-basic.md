@@ -25,6 +25,32 @@ https://docs.ros.org/en/foxy/Installation/Linux-Install-Debians.html
 https://docs.ros.org/en/foxy/Tutorials/Turtlesim/Introducing-Turtlesim.html
 
 2. ROS2 concept and feature
+```md
+# ros2 system concept
+## node --> minumum application unit
+node
+point to point
+1 to multi
+
+## exchange nodes message
+- 1. publisher-subscriber model
+topic(单向)
+publiser
+subscribtion
+msg
+
+- 2. call-and-response model,
+service(双向)
+client
+server
+srv(request-response)
+
+## nodes integration, relationship with middleware and opteration system
+executor
+single/multi process
+single/multi thread
+intra_process/middleware(config node option, set "use_intra_process_comms")
+```
 (key words: Publisher/Subscriber/Topic//Nodes/Services/Quality of Service/ROS Client Library --> rclcpp)
 - ROS2 concept
   - https://docs.ros.org/en/foxy/Concepts.html#internal-ros-interfaces
