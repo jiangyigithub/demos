@@ -61,10 +61,18 @@ log/
 
 # code demo
 ```c++
+// node constructor using intra_process
+  WatermarkNode(
+    const std::string & input, const std::string & output, const std::string & text,
+    const std::string & node_name = "watermark_node")
+  : Node(node_name, rclcpp::NodeOptions().use_intra_process_comms(true))
+  {
+  }
+// single 
 rclcpp::executors::SingleThreadedExecutor executor(...)
 executor.add_node(Node xxx)
 executor.spin()
-
+// multi
 rclcpp::executors::MultiThreadedExecutor executor(...)
 executor.add_node(Node xxx)
 executor.spin()
