@@ -20,18 +20,21 @@ import rclpy
 def main(args=None):
     rclpy.init(args=args)
     node = rclpy.create_node('minimal_client')
+    # client的创建 --> not include callback
     cli = node.create_client(AddTwoInts, 'add_two_ints')
-
+    # request input from client side
     req = AddTwoInts.Request()
     req.a = 41
     req.b = 1
+    # 等待服务
     while not cli.wait_for_service(timeout_sec=1.0):
         node.get_logger().info('service not available, waiting again...')
-
+    # 发送请求 request --> response
     future = cli.call_async(req)
+    # 等待响应
     rclpy.spin_until_future_complete(node, future)
 
-    result = future.result()
+    result = future.result() # get response
     node.get_logger().info(
         'Result of add_two_ints: for %d + %d = %d' %
         (req.a, req.b, result.sum))

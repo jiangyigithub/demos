@@ -18,7 +18,7 @@ import rclpy
 
 g_node = None
 
-
+# response for client's request from service side
 def add_two_ints_callback(request, response):
     global g_node
     response.sum = request.a + request.b
@@ -33,7 +33,7 @@ def main(args=None):
     rclpy.init(args=args)
 
     g_node = rclpy.create_node('minimal_service')
-
+    # service的创建 --> include callback
     srv = g_node.create_service(AddTwoInts, 'add_two_ints', add_two_ints_callback)
     while rclpy.ok():
         rclpy.spin_once(g_node)
