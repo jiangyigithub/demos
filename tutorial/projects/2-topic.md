@@ -44,12 +44,29 @@ https://docs.ros.org/en/foxy/Tutorials/Writing-A-Simple-Cpp-Publisher-And-Subscr
 ```//comment
 For the publisher node, spinning meant starting the timer, but for the subscriber it simply means preparing to receive messages whenever they come
 ```
-    - configure
-    - advertiseOutputs() --> create_publisher<messages>(topic,...)
-    - subscribeToInputs() --> create_subscription<messages>(topic,rclQoS,getInputCallback)
-    - runTask() --> create_wall_timer(cycle_time,publishCallback)
-    --> fuse()
-    --> publish()
+
+```c++
+    // 1.configure
+    // 2.advertiseOutputs()
+    create_publisher<msg>("topic",...)
+    // create timer task
+    create_wall_timer(cycle_time,timer_callback)
+    // timer_callback implement
+    timer_callback(...)
+    {
+        fuse()
+        publisher_->publish(msg_instance)
+    }
+       
+    // 3.subscribeToInputs() 
+    create_subscription<msg>("topic",rclQoS,topic_callback)
+    // topic_callback implement
+    topic_callback()
+    {
+        rclcpp::Subscription<msg>::SharedPtr subscription_
+    }
+    
+```
 
 # detail code
 - https://blog.csdn.net/qq_16893195/article/details/112983147
