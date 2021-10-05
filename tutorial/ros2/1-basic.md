@@ -9,6 +9,7 @@ https://docs.ros.org/en/foxy/Installation/Linux-Install-Debians.html
     gedit ~/.bashrc
   4. environment vairable
     printenv | grep -i ROS
+
 - extension packages
     sudo apt update
     sudo apt install python3-colcon-common-extensions
@@ -25,6 +26,7 @@ https://docs.ros.org/en/foxy/Installation/Linux-Install-Debians.html
 https://docs.ros.org/en/foxy/Tutorials/Turtlesim/Introducing-Turtlesim.html
 
 2. ROS2 concept and feature
+(key words: Publisher/Subscriber/Topic//Nodes/Services/Quality of Service/ROS Client Library --> rclcpp)
 ```md
 # ros2 system concept
 ## node --> minumum application unit
@@ -54,10 +56,11 @@ executor
 single/multi process
 single/multi thread
 ```
-(key words: Publisher/Subscriber/Topic//Nodes/Services/Quality of Service/ROS Client Library --> rclcpp)
-- ROS2 concept
+
+- ROS2 internal interfaces
   - https://docs.ros.org/en/foxy/Concepts.html#internal-ros-interfaces
   - https://docs.ros.org/en/foxy/Concepts/About-Internal-Interfaces.html#internal-api-architecture-overview
+
 - Understanding ROS 2 nodes
 https://docs.ros.org/en/foxy/Tutorials/Understanding-ROS2-Nodes.html
 
@@ -66,13 +69,17 @@ https://docs.ros.org/en/foxy/Tutorials/Understanding-ROS2-Nodes.html
 Creating your first ROS 2 package
 https://docs.ros.org/en/foxy/Tutorials/Creating-Your-First-ROS2-Package.html
 
-4. build(build, install, log)
+4. build(generate 3 folder: build, install, log)
 - Using colcon to build packages
 https://docs.ros.org/en/foxy/Tutorials/Colcon-Tutorial.html
 
 ```bash
+# list available ros2 package
 colcon list
 colcon graph
+# build ros2 package
+colcon build --packages-select examples_xxx
+# clean build file
 rm -rf install log build
 ```
 
@@ -85,6 +92,8 @@ Launch files allow you to start up and configure a number of executables contain
 Creating a launch file
 https://docs.ros.org/en/foxy/Tutorials/Launch-Files/Creating-Launch-Files.html
 https://docs.ros.org/en/foxy/How-To-Guides/Launch-file-different-formats.html
+
+Alternatively, we can call launch command by bash script:
 ```bash
 # call launch by bash script:
 chmod 777 xxx.sh
@@ -95,8 +104,8 @@ sudo ./xxx.sh
 Recording and playing back data
 https://docs.ros.org/en/foxy/Tutorials/Ros2bag/Recording-And-Playing-Back-Data.html
 
-8. data visualization with RViz
-   http://wiki.ros.org/rviz/UserGuide
+8. data 3D visualization with RViz
+http://wiki.ros.org/rviz/UserGuide
    
 9. rqt
 Using rqt Tools for Analysis:https://industrial-training-master.readthedocs.io/en/melodic/_source/session6/Using-rqt-tools-for-analysis.html
@@ -105,46 +114,67 @@ Using rqt Tools for Analysis:https://industrial-training-master.readthedocs.io/e
   https://roboticsbackend.com/rqt-graph-visualize-and-debug-your-ros-graph/
 - rqt_console -->log in GUI
   https://docs.ros.org/en/foxy/Tutorials/Rqt-Console/Using-Rqt-Console.html?highlight=rqt_console
-- rqt_plot -->
+- rqt_plot --> time series visualization
   https://roboticsbackend.com/rqt-plot-easily-debug-ros-topics/
 
 10. ros2 develop use c++
-    - Writing a simple publisher and subscriber --> implement node code
+    - Writing a simple publisher and subscriber --> implement node code **xxx_node.cpp**
     https://docs.ros.org/en/foxy/Tutorials/Writing-A-Simple-Cpp-Publisher-And-Subscriber.html
     For the publisher node, spinning meant starting the timer, but for the subscriber it simply means preparing to receive messages whenever they come
-      - configure
-      - advertiseOutputs() --> create_publisher<messages>(topic,...)
-      - subscribeToInputs() --> create_subscription<messages>(topic,rclQoS,getInputCallback)
-      - runTask() --> create_wall_timer(cycle_time,publishCallback)
-        --> fuse()
-        --> publish()
-    rclcpp:https://docs.ros.org/en/foxy/Tutorials/Tf2/Adding-A-Frame-Cpp.html
-    - ament_cmake user documentation --> build
+    **code demo c++**
+    ```c++
+    // 1.configure
+    // 2.advertiseOutputs()
+    create_publisher<msg>("topic",...)
+    // create timer task
+    create_wall_timer(cycle_time,timer_callback)
+    // timer_callback implement
+    timer_callback(...)
+    {
+        fuse()
+        publisher_->publish(msg_instance)
+    }
+       
+    // 3.subscribeToInputs() 
+    create_subscription<msg>("topic",rclQoS,topic_callback)
+    // topic_callback implement
+    topic_callback()
+    {
+        rclcpp::Subscription<msg>::SharedPtr subscription_
+    }
+    ```
+    
+    - Creating your first ROS 2 package --> implement ros2 package **package.xml**
+    https://docs.ros.org/en/foxy/Tutorials/Creating-Your-First-ROS2-Package.html
+
+    - ament_cmake user documentation --> implement build file **CMakeLists.txt**
     https://docs.ros.org/en/foxy/How-To-Guides/Ament-CMake-Documentation.html?highlight=cmake
-    - Creating a launch file(python) --> launch muti-nodes
+
+    - Creating a launch file(python) --> launch muti-excuables by python script **xxx_.launch.py**
     https://docs.ros.org/en/foxy/Tutorials/Launch-Files/Creating-Launch-Files.html#write-the-launch-file
 
 11. debug ros2 execuable
 **Config:**
-```// CMakeLists.txt
+```CMakeLists
+# CMakeLists.txt
 set(CMAKE_BUILD_TYPE Debug)
 ```
 
-```// launch.json
+```json
+// launch.json
 {
   "configurations": [
       {
           "name": "ros2_publisher",
           "program": "${workspaceFolder}/install/examples_rclcpp_minimal_subscriber/lib/examples_rclcpp_minimal_subscriber/"
       }
-  ]
+  ],
 
   "compounds": [
       {
           "name": "ros2_pub_sub",
           "configurations": ["ros2_publisher", "ros2_subscriber"]
       }
-
   ]
 }
 ```
@@ -158,4 +188,4 @@ set(CMAKE_BUILD_TYPE Debug)
 11. practices  
 - 1. ROS2 Basics Exercise --> ros2 basic command usage
   https://industrial-training-master.readthedocs.io/en/melodic/_source/session7/ROS2-Basics.html
-- 2. T2TF Demo:--> 
+- 2. Demo:--> 
