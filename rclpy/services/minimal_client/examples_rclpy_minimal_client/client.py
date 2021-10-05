@@ -24,7 +24,7 @@ def main(args=None):
     cli = node.create_client(AddTwoInts, 'add_two_ints')
     # request input from client side
     req = AddTwoInts.Request()
-    req.a = 41
+    req.a = 4
     req.b = 1
     # 等待服务
     while not cli.wait_for_service(timeout_sec=1.0):
