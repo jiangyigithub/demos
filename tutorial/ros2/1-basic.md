@@ -1,18 +1,30 @@
 0. ROS2 installation and extension:
-- install ROS foxy .
+- install ROS foxy
 https://docs.ros.org/en/foxy/Installation/Linux-Install-Debians.html
   1. start by source command
+    ```bash
     source /opt/ros/foxy/local_setup.bash
+    ```
   2. set ros2 as default on linux
+    ```bash
     echo "source /opt/ros/foxy/setup.bash" >> ~/.bashrc
+    ```
   3. check default system environment
+    ```bash
     gedit ~/.bashrc
+    ```
   4. environment vairable
+    ```bash
     printenv | grep -i ROS
+    ```
 
 - extension packages
+  ```bash
     sudo apt update
     sudo apt install python3-colcon-common-extensions
+    sudo apt install python3-rosdep2
+    pip3 install opencv-python
+    pip3 install -U scikit-learn
     sudo apt install libyaml-cpp-dev 
     sudo apt install ~nros-foxy-rqt*
     sudo apt install ros-foxy-diagnostic-updater
@@ -20,6 +32,8 @@ https://docs.ros.org/en/foxy/Installation/Linux-Install-Debians.html
     sudo apt-get install ros-foxy-ros2bag \
                         ros-foxy-rosbag2-converter-default-plugins \
                         ros-foxy-rosbag2-storage-default-plugins
+  
+  ```
 
 1. ROS2 hello world
 - Introducing turtlesim and rqt
