@@ -1,6 +1,6 @@
-0. ROS2 installation and extension:
-- install ROS foxy
-https://docs.ros.org/en/foxy/Installation/Linux-Install-Debians.html
+# ROS2 BASIC
+## ROS2 installation and extension:
+- [install ROS foxy](https://docs.ros.org/en/foxy/Installation/Linux-Install-Debians.html)
   1. start by source command
     ```bash
     source /opt/ros/foxy/local_setup.bash
@@ -13,12 +13,12 @@ https://docs.ros.org/en/foxy/Installation/Linux-Install-Debians.html
     ```bash
     gedit ~/.bashrc
     ```
-  4. environment vairable
+  4. print environment vairable
     ```bash
     printenv | grep -i ROS
     ```
 
-- extension packages
+- install extension packages
   ```bash
     sudo apt update
     sudo apt install python3-colcon-common-extensions
@@ -35,107 +35,101 @@ https://docs.ros.org/en/foxy/Installation/Linux-Install-Debians.html
   
   ```
 
-1. ROS2 hello world
-- Introducing turtlesim and rqt
-https://docs.ros.org/en/foxy/Tutorials/Turtlesim/Introducing-Turtlesim.html
+## ROS2 hello world
+- [Introducing turtlesim and rqt](https://docs.ros.org/en/foxy/Tutorials/Turtlesim/Introducing-Turtlesim.html)
 
-2. ROS2 concept and feature
+## ROS2 system concept
 (key words: Publisher/Subscriber/Topic//Nodes/Services/Quality of Service/ROS Client Library --> rclcpp)
-```md
-# ros2 system concept
-## node --> minumum application unit
-node
-point to point
-1 to multi
 
-## communication model --> exchange nodes message
-- 1. publisher-subscriber model
-topic(单向)
-publiser
-subscribtion
-msg
+1. node --> minumum application unit
+   - node
+   - point to point
+   - 1 to multi
 
-- 2. call-and-response model,
-service(双向)
-client
-server
-srv(request-response)
-
-## nodes communication mechanism
-DDS (middleware)
-intra_process (config node option, set "use_intra_process_comms")
-
-## integrate nodes as execuable, relationship with middleware and opteration system
-executor
-single/multi process
-single/multi thread
-```
-
-- ROS2 internal interfaces
-  - https://docs.ros.org/en/foxy/Concepts.html#internal-ros-interfaces
-  - https://docs.ros.org/en/foxy/Concepts/About-Internal-Interfaces.html#internal-api-architecture-overview
-
-- Understanding ROS 2 nodes
-https://docs.ros.org/en/foxy/Tutorials/Understanding-ROS2-Nodes.html
-
-3. package
-(key words: CMakeLists.txt, package.xml)
-Creating your first ROS 2 package
-https://docs.ros.org/en/foxy/Tutorials/Creating-Your-First-ROS2-Package.html
-
-4. build(generate 3 folder: build, install, log)
-- Using colcon to build packages
-https://docs.ros.org/en/foxy/Tutorials/Colcon-Tutorial.html
-
-```bash
-# list available ros2 package
-colcon list
-colcon graph
-# build ros2 package
-colcon build --packages-select examples_xxx
-# clean build file
-rm -rf install log build
-```
-
-5. source
-When colcon has completed building successfully, the output will be in the install directory. Before you can use any of the installed executables or libraries, you will need to add them to your path and library paths. colcon will have generated bash/bat files in the install directory to help setup the environment. These files will add all of the required elements to your path and library paths as well as provide any bash or shell commands exported by packages.
-. install/setup.bash
-
-6. run/launch
-Launch files allow you to start up and configure a number of executables containing ROS 2 nodes simultaneously.
-Creating a launch file
-https://docs.ros.org/en/foxy/Tutorials/Launch-Files/Creating-Launch-Files.html
-https://docs.ros.org/en/foxy/How-To-Guides/Launch-file-different-formats.html
-
-Alternatively, we can call launch command by bash script:
-```bash
-# call launch by bash script:
-chmod 777 xxx.sh
-sudo ./xxx.sh
-```
-
-7. record and replay
-Recording and playing back data
-https://docs.ros.org/en/foxy/Tutorials/Ros2bag/Recording-And-Playing-Back-Data.html
-
-8. data 3D visualization with RViz
-http://wiki.ros.org/rviz/UserGuide
+2. node communication model --> exchange nodes message
    
-9. rqt
-Using rqt Tools for Analysis:https://industrial-training-master.readthedocs.io/en/melodic/_source/session6/Using-rqt-tools-for-analysis.html
-- rqt_graph -->arch
-  use rqt_graph to visualize the changing nodes and topics, as well as the connections between them.
-  https://roboticsbackend.com/rqt-graph-visualize-and-debug-your-ros-graph/
-- rqt_console -->log in GUI
-  https://docs.ros.org/en/foxy/Tutorials/Rqt-Console/Using-Rqt-Console.html?highlight=rqt_console
-- rqt_plot --> time series visualization
-  https://roboticsbackend.com/rqt-plot-easily-debug-ros-topics/
+  ![alt text](Nodes-TopicandService.gif "Output from ros2")
+  - `publisher-subscriber model`
+    - topic(单向) --> [Understanding ROS 2 nodes](https://docs.ros.org/en/foxy/Tutorials/Understanding-ROS2-Nodes.html)
+    - publiser
+    - subscribtion
+    - msg
 
-10. ros2 develop use c++
-    - Writing a simple publisher and subscriber --> implement node code **xxx_node.cpp**
-    https://docs.ros.org/en/foxy/Tutorials/Writing-A-Simple-Cpp-Publisher-And-Subscriber.html
-    For the publisher node, spinning meant starting the timer, but for the subscriber it simply means preparing to receive messages whenever they come
-    **code demo c++**
+  - `call-and-response model`
+    - service(双向)
+    - client
+    - server
+    - srv(request-response)
+
+3. nodes communication mechanism
+   - DDS (middleware)
+   - intra_process (config node option, set "use_intra_process_comms")
+
+4. integrate nodes as execuable, relationship with middleware and opteration system.
+   
+   ![alt text](ROS1-ROS2-architecture-for-DDS-approach-to-ROS-We-clarify-the-performance-of-the-data.png "Output from ros2")
+
+   - rclcpp
+     - [ROS2 internal interfaces](https://docs.ros.org/en/foxy/Concepts/About-Internal-Interfaces.html#internal-api-architecture-overview)
+   - opteration system
+     - executor
+     - single/multi process
+     - single/multi thread
+  
+## package
+(key words: CMakeLists.txt, package.xml)
+- [Creating your first ROS 2 package](https://docs.ros.org/en/foxy/Tutorials/Creating-Your-First-ROS2-Package.html)
+
+## build(generate 3 folder: build, install, log)
+- [Using colcon to build packages](https://docs.ros.org/en/foxy/Tutorials/Colcon-Tutorial.html)
+
+  ```bash
+  # list available ros2 package
+  colcon list
+  colcon graph
+  # build ros2 package
+  colcon build --packages-select examples_xxx
+  # clean build file
+  rm -rf install log build
+  ```
+
+## source
+>When colcon has completed building successfully, the output will be in the install directory. Before you can use any of the installed executables or libraries, you will need to add them to your path and library paths. colcon will have generated bash/bat files in the install directory to help setup the environment. These files will add all of the required elements to your path and library paths as well as provide any bash or shell commands exported by packages.  
+```$ . install/setup.bash```
+
+## run/launch
+- Launch files allow you to start up and configure a number of executables containing ROS 2 nodes simultaneously.
+  - [Creating a launch file](https://docs.ros.org/en/foxy/Tutorials/Launch-Files/Creating-Launch-Files.html)
+  - [Different formats Launch file](https://docs.ros.org/en/foxy/How-To-Guides/Launch-file-different-formats.html)
+
+- Alternatively, we can call launch command by bash script:
+  ```bash
+  # call launch by bash script:
+  chmod 777 xxx.sh
+  sudo ./xxx.sh
+  ```
+
+## record and replay
+- [Recording and playing back data](https://docs.ros.org/en/foxy/Tutorials/Ros2bag/Recording-And-Playing-Back-Data.html)
+
+## data 3D visualization with RViz
+- [RVIZ User Guide](http://wiki.ros.org/rviz/UserGuide)
+   
+## rqt
+- [Using rqt Tools for Analysis](https://industrial-training-master.readthedocs.io/en/melodic/_source/session6/Using-rqt-tools-for-analysis.html)
+  - `rqt_graph` --> view node arch,use rqt_graph to visualize the changing nodes and topics, as well as the connections between them.  
+    https://roboticsbackend.com/rqt-graph-visualize-and-debug-your-ros-graph/
+  - `rqt_console` --> log in GUI  
+    https://docs.ros.org/en/foxy/Tutorials/Rqt-Console/Using-Rqt-Console.html?highlight=rqt_console
+  - `rqt_plot` --> time series visualization  
+    https://roboticsbackend.com/rqt-plot-easily-debug-ros-topics/
+
+## ros2 develop use c++
+- implement node code --> `xxx_node.cpp`  
+   - [Writing a simple publisher and subscriber](https://docs.ros.org/en/foxy/Tutorials/Writing-A-Simple-Cpp-Publisher-And-Subscriber.html) 
+      >For the publisher node, spinning meant starting the timer, but for the subscriber it simply means preparing to receive messages whenever they come
+
+  - code demo c++
     ```c++
     // 1.configure
     // 2.advertiseOutputs()
@@ -148,7 +142,7 @@ Using rqt Tools for Analysis:https://industrial-training-master.readthedocs.io/e
         fuse()
         publisher_->publish(msg_instance)
     }
-       
+      
     // 3.subscribeToInputs() 
     create_subscription<msg>("topic",rclQoS,topic_callback)
     // topic_callback implement
@@ -158,48 +152,49 @@ Using rqt Tools for Analysis:https://industrial-training-master.readthedocs.io/e
     }
     ```
     
-    - Creating your first ROS 2 package --> implement ros2 package **package.xml**
-    https://docs.ros.org/en/foxy/Tutorials/Creating-Your-First-ROS2-Package.html
+- implement ros2 package --> `package.xml`
+  - [Creating your first ROS 2 package](https://docs.ros.org/en/foxy/Tutorials/Creating-Your-First-ROS2-Package.html) 
+    
+- implement build file --> `CMakeLists.txt`
+  - [ament_cmake user documentation](https://docs.ros.org/en/foxy/How-To-Guides/Ament-CMake-Documentation.html?highlight=cmake) 
+    
+- implement python script to launch muti-excuables -->  `xxx_.launch.py`
+  - [Creating a launch file](https://docs.ros.org/en/foxy/Tutorials/Launch-Files/Creating-Launch-Files.html#write-the-launch-file) 
+    
 
-    - ament_cmake user documentation --> implement build file **CMakeLists.txt**
-    https://docs.ros.org/en/foxy/How-To-Guides/Ament-CMake-Documentation.html?highlight=cmake
+## debug ros2 execuable
+- configure cmake file
+  ```cmake
+  # CMakeLists.txt
+  set(CMAKE_BUILD_TYPE Debug)
+  ```
 
-    - Creating a launch file(python) --> launch muti-excuables by python script **xxx_.launch.py**
-    https://docs.ros.org/en/foxy/Tutorials/Launch-Files/Creating-Launch-Files.html#write-the-launch-file
+- configure launch json
+  ```json
+  // launch.json
+  {
+    "configurations": [
+        {
+            "name": "ros2_publisher",
+            "program": "${workspaceFolder}/install/examples_rclcpp_minimal_subscriber/lib/examples_rclcpp_minimal_subscriber/"
+        }
+    ],
 
-11. debug ros2 execuable
-**Config:**
-```CMakeLists
-# CMakeLists.txt
-set(CMAKE_BUILD_TYPE Debug)
-```
-
-```json
-// launch.json
-{
-  "configurations": [
-      {
-          "name": "ros2_publisher",
-          "program": "${workspaceFolder}/install/examples_rclcpp_minimal_subscriber/lib/examples_rclcpp_minimal_subscriber/"
-      }
-  ],
-
-  "compounds": [
-      {
-          "name": "ros2_pub_sub",
-          "configurations": ["ros2_publisher", "ros2_subscriber"]
-      }
-  ]
-}
-```
-**Hints:**
-- set break point after node is running
-**More about debuger**
-- https://code.visualstudio.com/docs/editor/debugging
-- https://github.com/ms-iot/vscode-ros/blob/master/doc/debug-support.md#attach
+    "compounds": [
+        {
+            "name": "ros2_pub_sub",
+            "configurations": ["ros2_publisher", "ros2_subscriber"]
+        }
+    ]
+  }
+  ```
+- Hints
+  - set break point after node is running
+- More about debuger
+  - https://code.visualstudio.com/docs/editor/debugging
+  - https://github.com/ms-iot/vscode-ros/blob/master/doc/debug-support.md#attach
 
 
-11. practices  
-- 1. ROS2 Basics Exercise --> ros2 basic command usage
-  https://industrial-training-master.readthedocs.io/en/melodic/_source/session7/ROS2-Basics.html
-- 2. Demo:--> 
+## practices  
+- [ROS2 Basics Exercise](https://industrial-training-master.readthedocs.io/en/melodic/_source/session7/ROS2-Basics.html) --> ros2 basic command usage
+- Demo:--> 
