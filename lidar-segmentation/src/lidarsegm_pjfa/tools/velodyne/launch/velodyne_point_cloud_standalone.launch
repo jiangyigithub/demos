@@ -1,9 +1,0 @@
-<launch>
-  <node name="velodyne_point_cloud_nodelet_manager" type="nodelet" pkg="nodelet" args="manager"/>
-
-  <!-- Point clouds for debugging -->
-  <node name="velodyne_pcl_nodelet_loader" type="nodelet" pkg="nodelet" 
-        args="load velodyne/VelodynePointCloudNodelet velodyne_point_cloud_nodelet_manager">
-    <remap from="scan" to="/driving/velodyne/projected_spin"/> <!-- Velodyne spin topic -->
-  </node>
-</launch>

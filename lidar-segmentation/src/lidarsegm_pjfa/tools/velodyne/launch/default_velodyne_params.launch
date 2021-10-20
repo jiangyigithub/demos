@@ -1,6 +1,0 @@
-<launch>
-  <param name="/driving/velodyne/port" 			    value="2368" />
-  <param name="/driving/velodyne/cal_file" 	            value="$(find driving_common)/param/cal/velodyne/237.cal" />
-  <param name="/driving/velodyne/calibrate_intensities"     value="true" />
-  <param name="/driving/velodyne/int_file"                  value="$(find driving_common)/param/cal/velodyne/237.ical" />
-</launch>

@@ -1,7 +1,0 @@
-<launch>
-  <node name="velodyne_nodelet_manager" type="nodelet" pkg="nodelet" args="manager"/>
-
-  <!-- Project raw packets to XYZ data -->
-  <node name="velodyne_projector_nodelet_loader" type="nodelet" pkg="nodelet" 
-        args="load velodyne/VelodyneProjectorNodelet velodyne_nodelet_manager"/>
-</launch>
