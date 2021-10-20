@@ -1,0 +1,12 @@
+<launch>
+  <!-- Parameters must be set before using this file -->
+  <!-- See velodyne/launch/default_velodyne_params.launch -->
+
+  <node name="velodyne_nodelet_manager" type="nodelet" pkg="nodelet" args="manager"/>
+
+  <!-- Velodyne driver (raw packets to ROS) -->
+  <node name="velodyne_driver_nodelet_loader" type="nodelet" pkg="nodelet" args="load velodyne/VelodyneDriverNodelet     velodyne_nodelet_manager"/>
+
+  <!-- Velodyne to PointCloud2 (raw packets to PC data) -->
+  <node name="velodyne_to_pointcloud_nodelet_loader" type="nodelet" pkg="nodelet" args="load velodyne/VelodyneToPointCloudNodelet     velodyne_nodelet_manager"/>
+</launch>

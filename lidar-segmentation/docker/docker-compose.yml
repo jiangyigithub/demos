@@ -1,0 +1,20 @@
+version: '3'
+services:
+  lipe:
+    image: rb-dtr.de.bosch.com/bpai/lipe
+    volumes:
+     - $HOME/workspace/lidar-segmentation:/workspace/lidar-segmentation
+     - /mnt:/mnt
+     - /tmp/.X11-unix:/tmp/.X11-unix:rw
+     - /dev:/dev
+    environment:
+     - http_proxy=http://172.17.0.1:3128
+     - https_proxy=https://172.17.0.1:3128
+     - DISPLAY
+     - QT_X11_NO_MITSHM=1
+     - ROS_MASTER_URI=http://172.27.0.2:11311
+    networks:
+     -  osd4-pjfa_pjfa_network
+networks:
+  osd4-pjfa_pjfa_network:
+    external: true

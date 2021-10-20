@@ -1,0 +1,27 @@
+build/
+input/
+devel/
+logs/
+src/freespace_estimation/build
+src/freespace_estimation/devel
+src/freespace_estimation/log
+*.swp
+*.project
+*cproject
+bags/
+*.pkl
+*events*
+*.pcd
+*.pyc
+bags/
+saved_bags/
+saved_bags_v2/
+src/lidarsegm_pjfa/models/pointnet_training/models/__pycache__
+src/lidarsegm_pjfa/models/pointnet_training/models/__pycache__/*
+# ignore generated files
+.catkin_tools/
+*.code-workspace
+src/lidarsegm_pjfa/src/.vscode/
+src/lidarsegm_pjfa-build/
+*.user
+
