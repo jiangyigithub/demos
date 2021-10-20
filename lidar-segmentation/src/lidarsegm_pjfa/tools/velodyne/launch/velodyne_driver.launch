@@ -1,0 +1,10 @@
+<launch>
+  <!-- Parameters must be set before using this file -->
+  <!-- See velodyne/launch/default_velodyne_params.launch -->
+
+  <node name="velodyne_nodelet_manager" type="nodelet" pkg="nodelet" args="manager"/>
+
+  <!-- Velodyne driver (raw packets to ROS) -->
+  <node name="velodyne_driver_nodelet_loader" type="nodelet" pkg="nodelet" args="load velodyne/VelodyneDriverNodelet     velodyne_nodelet_manager"/>
+
+</launch>
