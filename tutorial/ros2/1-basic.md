@@ -125,6 +125,7 @@
     https://roboticsbackend.com/rqt-plot-easily-debug-ros-topics/
 
 ## ros2 develop use c++
+- [Code style and language versions](https://docs.ros.org/en/foxy/Contributing/Code-Style-Language-Versions.html)
 - implement node code --> `xxx_node.cpp`  
    - [Writing a simple publisher and subscriber](https://docs.ros.org/en/foxy/Tutorials/Writing-A-Simple-Cpp-Publisher-And-Subscriber.html) 
       >For the publisher node, spinning meant starting the timer, but for the subscriber it simply means preparing to receive messages whenever they come
