@@ -1,0 +1,19 @@
+@startuml TrackToTrackFusion
+
+' Comments are like this
+/' or several -
+lines like this '/
+
+skinparam linetype ortho
+
+!include ros.plantuml
+!include fusion.plantuml!fusion
+!include object_prediction.plantuml!object_prediction
+!include fusion_internal.plantuml
+!include cost.plantuml!cost
+!include feature_fusion.plantuml!feature_fusion
+!include object_processors.plantuml!object_processors
+
+' hide members
+
+@enduml

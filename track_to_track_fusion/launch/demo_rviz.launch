@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="global_frame_id"     default="layered_map_enu"/>
+    <!-- time parameter -->
+    <arg name="use_sim_time"        default="false"/>
+    <arg name="vehicle"             default="renna"/> <!-- renna, singha -->
+    <arg name="site"                default="rng_campus"/> <!-- rng_campus, sgp_cetran, sgp_psa -->
+    <arg name="fusion_type"         default="bothSensors"/> <!-- onlyLidar,bothSensors -->
+    <arg name="radar_tracker"       default="matlab"/> <!-- matlab -->
+    <arg name="record_obj_list"     default="false" />
+
+    <param name="/use_sim_time"     value="$(arg use_sim_time)" />
+
+    <!-- Map Origin -->
+    <rosparam command="load" file="$(find slam_control)/config/sites/$(arg site).yaml" />
+    <param name="/map/origin/yaw" value="0.0"/>
+
+    <arg name="bag" default=""/>
+    <group if="$(eval arg('bag')!='')">
+        <param name="/use_sim_time" value="true" />
+        <node pkg="rosbag" type="play" name="playback" output="screen" args="--clock $(arg bag)" />
+    </group>
+
+    <!-- Shuttle 3D Model -->
+    <include file="$(find shu_ez10_description)/launch/shu_ez10.launch">
+      <arg name="vehicle" value="$(arg vehicle)" />
+    </include>
+
+    <!-- Layered Map Service -->
+    <rosparam command="load" file="$(find shu_ez10_launch)/params/frame_ids.yaml" ns="/driving/planning/frame_ids"/>
+    <param name="/map_service/broadcast_layered_map_enu_frame" value="false"/>
+    <param name="/driving/map_file" value="$(find layered_maps)/$(arg site)/$(arg site).osm"/>
+    <node name="map_service" pkg="map_service" type="layered_map_service_node"/>
+
+    <!-- Segmentation -->
+    <include file="$(find shu_ez10_launch)/launch/velodynes.launch">
+        <arg name="vehicle" value="$(arg vehicle)"/>
+        <arg name="playback" value="true"/>
+    </include>
+    <include file="$(find lidar_segmentation)/launch/lidar_segmentation.launch">
+        <arg name="vehicle" value="$(arg vehicle)" />
+    </include>
+
+    <!-- Lidar Object Detection -->
+    <include file="$(find object_list)/launch/object_list.launch">
+        <arg name="global_frame_id"        value="$(arg global_frame_id)" />
+        <arg name="vehicle"                value="$(arg vehicle)" />
+    </include>
+
+    <!-- Radar Object Tracking -->
+    <include file="$(find track_to_track_fusion)/launch/radar.launch"/>
+
+    <!-- Object Fusion -->
+    <include file="$(find track_to_track_fusion)/launch/track_to_track_fusion.launch">
+      <arg name="config_file" value="$(find track_to_track_fusion)/config/shuttle.yaml" />
+    </include>
+
+    <!-- RViz Visu -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find track_to_track_fusion)/launch/demo_rviz.rviz"/>
+
+    <!-- Record bagfile -->
+    <node pkg="rosbag" type="record" name="record_obj_list"
+          args="record /obstacles/dynamic /obstacles/dynamic_visu /localization/pose /tf /tf_static"
+          if="$(arg record_obj_list)" />
+
+</launch>

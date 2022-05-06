@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="244px" preserveAspectRatio="none" style="width:511px;height:244px;" version="1.1" viewBox="0 0 511 244" width="511px" zoomAndPan="magnify"><defs><filter height="300%" id="fvbsbfrlnu33l" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--cluster object_prediction--><rect fill="#FFFFFF" filter="url(#fvbsbfrlnu33l)" height="217" style="stroke: #000000; stroke-width: 2.0;" width="256" x="244" y="16"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="136" x="304" y="30.9951">object_prediction</text><!--cluster fusion--><rect fill="#FFFFFF" filter="url(#fvbsbfrlnu33l)" height="96" style="stroke: #000000; stroke-width: 2.0;" width="214" x="14" y="16"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="49" x="96.5" y="30.9951">fusion</text><!--class ObjectsPredictor--><rect fill="#FEFECE" filter="url(#fvbsbfrlnu33l)" height="60.8047" id="ObjectsPredictor" style="stroke: #A80036; stroke-width: 1.5;" width="235" x="254.5" y="43"/><ellipse cx="315.75" cy="59" fill="#ADD1B2" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M318.7188,64.6406 Q318.1406,64.9375 317.5,65.0781 Q316.8594,65.2344 316.1563,65.2344 Q313.6563,65.2344 312.3281,63.5938 Q311.0156,61.9375 311.0156,58.8125 Q311.0156,55.6875 312.3281,54.0313 Q313.6563,52.375 316.1563,52.375 Q316.8594,52.375 317.5,52.5313 Q318.1563,52.6875 318.7188,52.9844 L318.7188,55.7031 Q318.0938,55.125 317.5,54.8594 Q316.9063,54.5781 316.2813,54.5781 Q314.9375,54.5781 314.25,55.6563 Q313.5625,56.7188 313.5625,58.8125 Q313.5625,60.9063 314.25,61.9844 Q314.9375,63.0469 316.2813,63.0469 Q316.9063,63.0469 317.5,62.7813 Q318.0938,62.5 318.7188,61.9219 L318.7188,64.6406 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="104" x="336.25" y="63.1543">ObjectsPredictor</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="255.5" x2="488.5" y1="75" y2="75"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="255.5" x2="488.5" y1="83" y2="83"/><ellipse cx="265.5" cy="94.9023" fill="#84BE84" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="209" x="274.5" y="97.2104">predict( NotCopyableObjects , Time )</text><!--class ConstantVelocityObjectPrediction--><rect fill="#FEFECE" filter="url(#fvbsbfrlnu33l)" height="60.8047" id="ConstantVelocityObjectPrediction" style="stroke: #A80036; stroke-width: 1.5;" width="240" x="252" y="164"/><ellipse cx="267" cy="180" fill="#ADD1B2" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M269.9688,185.6406 Q269.3906,185.9375 268.75,186.0781 Q268.1094,186.2344 267.4063,186.2344 Q264.9063,186.2344 263.5781,184.5938 Q262.2656,182.9375 262.2656,179.8125 Q262.2656,176.6875 263.5781,175.0313 Q264.9063,173.375 267.4063,173.375 Q268.1094,173.375 268.75,173.5313 Q269.4063,173.6875 269.9688,173.9844 L269.9688,176.7031 Q269.3438,176.125 268.75,175.8594 Q268.1563,175.5781 267.5313,175.5781 Q266.1875,175.5781 265.5,176.6563 Q264.8125,177.7188 264.8125,179.8125 Q264.8125,181.9063 265.5,182.9844 Q266.1875,184.0469 267.5313,184.0469 Q268.1563,184.0469 268.75,183.7813 Q269.3438,183.5 269.9688,182.9219 L269.9688,185.6406 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="208" x="281" y="184.1543">ConstantVelocityObjectPrediction</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="253" x2="491" y1="196" y2="196"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="253" x2="491" y1="204" y2="204"/><ellipse cx="263" cy="215.9023" fill="#84BE84" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="209" x="272" y="218.2104">predict( NotCopyableObjects , Time )</text><!--class FusionInterface--><rect fill="#FEFECE" filter="url(#fvbsbfrlnu33l)" height="60.8047" id="FusionInterface" style="stroke: #A80036; stroke-width: 1.5;" width="197" x="22.5" y="43"/><ellipse cx="68.25" cy="59" fill="#ADD1B2" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M71.2188,64.6406 Q70.6406,64.9375 70,65.0781 Q69.3594,65.2344 68.6563,65.2344 Q66.1563,65.2344 64.8281,63.5938 Q63.5156,61.9375 63.5156,58.8125 Q63.5156,55.6875 64.8281,54.0313 Q66.1563,52.375 68.6563,52.375 Q69.3594,52.375 70,52.5313 Q70.6563,52.6875 71.2188,52.9844 L71.2188,55.7031 Q70.5938,55.125 70,54.8594 Q69.4063,54.5781 68.7813,54.5781 Q67.4375,54.5781 66.75,55.6563 Q66.0625,56.7188 66.0625,58.8125 Q66.0625,60.9063 66.75,61.9844 Q67.4375,63.0469 68.7813,63.0469 Q69.4063,63.0469 70,62.7813 Q70.5938,62.5 71.2188,61.9219 L71.2188,64.6406 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="97" x="88.75" y="63.1543">FusionInterface</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="23.5" x2="218.5" y1="75" y2="75"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="23.5" x2="218.5" y1="83" y2="83"/><ellipse cx="33.5" cy="94.9023" fill="#84BE84" rx="3" ry="3" style="stroke: #038048; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="171" x="42.5" y="97.2104">setPredictor(ObjectsPredictor)</text><!--link ObjectsPredictor to ConstantVelocityObjectPrediction--><path d="M372,124.0334 C372,124.0334 372,163.9764 372,163.9764 " fill="none" id="ObjectsPredictor-ConstantVelocityObjectPrediction" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="none" points="365.0001,124.0334,372,104.0334,379.0001,124.0334,365.0001,124.0334" style="stroke: #A80036; stroke-width: 1.0;"/><!--link FusionInterface to ObjectsPredictor--><path d="M232.8415,74 C232.8415,74 254.1036,74 254.1036,74 " fill="none" id="FusionInterface-ObjectsPredictor" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="219.8415,74,225.8415,78,231.8415,74,225.8415,70,219.8415,74" style="stroke: #A80036; stroke-width: 1.0;"/><!--
+@startuml(id=object_prediction) TrackToTrackFusion_Prediction
+
+' Comments are like this
+/' or several -
+lines like this '/
+
+skinparam linetype ortho
+
+package object_prediction <<Rectangle>> {
+
+    class ObjectsPredictor {
+     + {abstract} predict( NotCopyableObjects , Time )
+    }
+
+    class ConstantVelocityObjectPrediction {
+     + predict( NotCopyableObjects , Time )
+    }
+
+    ObjectsPredictor <|- - ConstantVelocityObjectPrediction
+}
+
+package fusion <<Rectangle>> {
+
+    class FusionInterface {
+     + setPredictor(ObjectsPredictor)
+    }
+
+    FusionInterface                *-right-  ObjectsPredictor
+}
+
+@enduml
+
+PlantUML version 1.2017.15(Mon Jul 03 18:45:34 CEST 2017)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 11.0.9.1+1-Ubuntu-0ubuntu1.18.04
+Operating System: Linux
+OS Version: 4.15.0-130-generic
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

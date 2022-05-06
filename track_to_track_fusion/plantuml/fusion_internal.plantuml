@@ -1,0 +1,40 @@
+@startuml(id=fusion_internal) TrackToTrackFusion_FusionInternal
+
+skinparam linetype ortho
+
+!include fusion.plantuml!fusion
+
+package perception_kit_msgs <<Rectangle>> {
+    class Objects
+    class Object
+    Objects *-- Object
+}
+
+package fusion <<Rectangle>> {
+
+    package internal_data_structures <<Rectangle>> {
+        class TraceStorage << (S,#FF7700) Static >> {
+            + {static} getIdFromTrace( Trace ) : Id
+        }
+        class NonCopyableObjects
+        class ObjectsWithTrace
+        class Trace
+        class CostCell
+        class CostCell::LMatrix
+        class ObjectsWithTrace::Container
+
+        CostCell::LMatrix           *-- CostCell
+        CostCell                    *-- Row
+        CostCell                    *-- Col
+        ObjectsWithTrace::Container *-- ObjectsWithTrace
+        ObjectsWithTrace            *-- Trace
+        ObjectsWithTrace            *-- Object
+    }
+}
+FusionInterface ..> NonCopyableObjects : uses
+FusionInterface ..> CostCell::LMatrix : uses
+FusionInterface ..>  TraceStorage : uses
+FusionInterface ..>  ObjectsWithTrace::Container : uses
+Objects                    <|-- NonCopyableObjects
+@enduml
+

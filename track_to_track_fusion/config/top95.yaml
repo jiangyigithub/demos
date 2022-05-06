@@ -1,0 +1,13 @@
+inputs:
+  radar:
+    topic_name: /perception/radar_gen5/tracks
+    min_existence_probability: 0.9
+  lidar:
+    topic_name: /perception/simulation/tracks
+    min_existence_probability: 0.0
+
+output:
+  topic_name: /obstacles/dynamic_difusion
+  min_existence_probability: 0.3
+
+operation_frame: layered_map_enu

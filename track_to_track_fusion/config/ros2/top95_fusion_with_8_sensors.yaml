@@ -1,0 +1,33 @@
+fusion_node:
+  ros__parameters:
+    inputs:
+      sensor_names: ['camera_01_01', 'camera_01_02', 'camera_02_01', 'camera_02_02', 'radar_01_01', 'radar_01_02', 'radar_02_01', 'radar_02_02']
+      camera_01_01:
+        min_existence_probability: 0.0
+        topic_name: '/perception/camera/camera_01_01/objects_gt_transform'
+      camera_01_02:
+        min_existence_probability: 0.0
+        topic_name: '/perception/camera/camera_01_02/objects_gt_transform'
+      camera_02_01:
+        min_existence_probability: 0.0
+        topic_name: '/perception/camera/camera_02_01/objects_gt_transform'
+      camera_02_02:
+        min_existence_probability: 0.0
+        topic_name: '/perception/camera/camera_02_02/objects_gt_transform'
+      radar_01_01:
+        min_existence_probability: 0.0
+        topic_name: '/perception/radar/radar_01_01/objects_gt_transform'
+      radar_01_02:
+        min_existence_probability: 0.0
+        topic_name: '/perception/radar/radar_01_02/objects_gt_transform'
+      radar_02_01:
+        min_existence_probability: 0.0
+        topic_name: '/perception/radar/radar_02_01/objects_gt_transform'
+      radar_02_02:
+        min_existence_probability: 0.0
+        topic_name: '/perception/radar/radar_02_02/objects_gt_transform'
+    operation_frame: 'layered_map_enu'
+    output:
+      min_existence_probability: 0.3
+      topic_name: '/perception/fusion/objects'
+    use_sim_time: true

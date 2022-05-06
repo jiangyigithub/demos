@@ -1,0 +1,39 @@
+@startuml(id=cost) TrackToTrackFusion_Cost
+
+skinparam linetype ortho
+
+package fusion <<Rectangle>> {
+
+    class FusionInterface {
+    }
+} 
+
+package cost <<Rectangle>> {
+
+    class CostCalculator {
+        + cost() : CostFunction
+        + threshold() : double
+    }
+
+    class CostFunction {
+    }
+
+    CostCalculator *-- CostFunction
+
+    CostFunction .. EuclidanDistance
+    CostFunction .. EuclidanDistanceSqrt
+    CostFunction .. MahanalobisDistance
+ 
+    hide members
+    show CostCalculator members
+    
+    hide CostFunction circle
+    hide EuclidanDistance circle
+    hide MahanalobisDistance circle
+    hide EuclidanDistanceSqrt circle
+
+    FusionInterface                *-right-  CostCalculator
+}
+
+
+@enduml

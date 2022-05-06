@@ -1,0 +1,36 @@
+@startuml(id=ros) TrackToTrackFusion_ROS
+
+skinparam linetype ortho
+
+!include fusion.plantuml!fusion
+
+package fusion::ros <<Rectangle>> {
+    class InputConfiguration {
+        + name : string
+        + topic_name : string
+    }
+    
+    class OutputConfiguration {
+        + topic_name : string
+    }
+
+    class FusionNode {
+        + spin()
+        - onObjectsCallback( perception_kit_msgs::Objects )
+        - publishObjects( const ros::TimerEvent )
+        - toBaseLink( perception_kit_msgs::Object::Position ) : perception_kit_msgs::Object::Position
+
+        - operation_frame_ : string
+        - transform_listener_ : ros::TransformListener
+        - subscribers_ : list< ros::Subscriber >
+        - subscriber_ : ros::Publisher
+    }
+
+    FusionNode *-right- FusionInterface
+    FusionNode *-- "NS" InputConfiguration
+    FusionNode *-- OutputConfiguration
+
+}
+
+
+@enduml

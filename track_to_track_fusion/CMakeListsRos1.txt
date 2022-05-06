@@ -1,0 +1,234 @@
+## Find catkin macros and libraries
+## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
+## is used, also find other catkin packages
+find_package(catkin REQUIRED COMPONENTS
+    perception_kit_msgs
+    roscpp
+    tf
+    tf2
+    tf2_geometry_msgs
+    tf2_ros
+    visualization_msgs
+)
+
+catkin_package(
+#  INCLUDE_DIRS include
+#  LIBRARIES track_to_track_fusion
+   CATKIN_DEPENDS
+   perception_kit_msgs
+   roscpp
+   tf
+   tf2
+   tf2_geometry_msgs
+   tf2_ros
+   visualization_msgs
+#  DEPENDS system_lib tf2_geometry_msgs
+)
+
+include_directories(
+ include
+ ${catkin_INCLUDE_DIRS}
+)
+
+add_library(${PROJECT_NAME}_objects_processors
+  src/objects_processors/existence_threshold_filter.cpp
+)
+
+add_library(${PROJECT_NAME}_objects_prediction
+  src/objects_prediction/constant_velocity.cpp
+)
+
+add_library(${PROJECT_NAME}_feature_fusion
+  src/${PROJECT_NAME}/feature/classification.cpp
+  src/${PROJECT_NAME}/feature/dimension.cpp
+  src/${PROJECT_NAME}/feature/dynamics.cpp
+  src/${PROJECT_NAME}/feature/existence_probability.cpp
+  src/${PROJECT_NAME}/feature/feature_fusion_interfaces.cpp
+  src/${PROJECT_NAME}/feature/orientation.cpp
+  src/${PROJECT_NAME}/feature/position.cpp
+)
+
+add_library(${PROJECT_NAME}_cost_functions
+  src/${PROJECT_NAME}/cost/cost_functions.cpp
+)
+
+add_library(${PROJECT_NAME}_weights
+  src/${PROJECT_NAME}/weights.cpp
+  src/${PROJECT_NAME}/object_with_trace.cpp
+  src/${PROJECT_NAME}/trace_storage.cpp
+  src/${PROJECT_NAME}/cost_cell.cpp
+)
+
+
+add_library(${PROJECT_NAME}
+  src/${PROJECT_NAME}/fusion_interface.cpp
+  src/${PROJECT_NAME}/fusion_postprocessor_interface.cpp
+  src/${PROJECT_NAME}/fusion_preprocessor_interface.cpp
+  src/${PROJECT_NAME}/object_fusion_executer.cpp
+  src/${PROJECT_NAME}/weights.cpp
+)
+
+## Add cmake target dependencies of the library
+## as an example, code may need to be generated before libraries
+## either from message generation or dynamic reconfigure
+add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+## Declare a C++ executable
+## With catkin_make all packages are built within a single CMake context
+## The recommended prefix ensures that target names across packages don't collide
+add_executable(${PROJECT_NAME}_node
+  src/ros/${PROJECT_NAME}_node_main.cpp
+  src/ros/fusion_node.cpp
+)
+
+## Rename C++ executable without prefix
+## The above recommended prefix causes long target names, the following renames the
+## target back to the shorter version for ease of user use
+## e.g. "rosrun someones_pkg node" instead of "rosrun someones_pkg someones_pkg_node"
+# set_target_properties(${PROJECT_NAME}_node PROPERTIES OUTPUT_NAME node PREFIX "")
+
+## Add cmake target dependencies of the executable
+## same as for the library above
+add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+## Specify libraries to link a library or executable target against
+target_link_libraries(${PROJECT_NAME}_node
+  ${catkin_LIBRARIES}
+  ${PROJECT_NAME}
+  ${PROJECT_NAME}_cost_functions
+  ${PROJECT_NAME}_objects_processors
+  ${PROJECT_NAME}_objects_prediction
+  ${PROJECT_NAME}_feature_fusion
+  ${PROJECT_NAME}_weights
+)
+
+target_link_libraries(${PROJECT_NAME}
+  ${catkin_LIBRARIES}
+)
+
+#############
+## Install ##
+#############
+
+# all install targets should use catkin DESTINATION variables
+# See http://ros.org/doc/api/catkin/html/adv_user_guide/variables.html
+
+## Mark executable scripts (Python etc.) for installation
+## in contrast to setup.py, you can choose the destination
+# install(PROGRAMS
+#   scripts/my_python_script
+#   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+# )
+
+## Mark executables and/or libraries for installation
+install(TARGETS ${PROJECT_NAME}_objects_processors
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+install(TARGETS ${PROJECT_NAME}_objects_prediction
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+install(TARGETS ${PROJECT_NAME}_feature_fusion
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+install(TARGETS ${PROJECT_NAME}_cost_functions
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+install(TARGETS ${PROJECT_NAME}_weights
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+install(TARGETS ${PROJECT_NAME}
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+## Mark executables and/or libraries for installation
+install(TARGETS ${PROJECT_NAME}_node
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+## Mark cpp header files for installation
+# install(DIRECTORY include/${PROJECT_NAME}/
+#   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+#   FILES_MATCHING PATTERN "*.h"
+#   PATTERN ".svn" EXCLUDE
+# )
+
+## Mark other files for installation (e.g. launch and bag files, etc.)
+# install(FILES
+#   # myfile1
+#   # myfile2
+#   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+# )
+
+#############
+## Testing ##
+#############
+
+## Add gtest based cpp test target and link libraries
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_track_to_track_fusion.cpp)
+# if(TARGET ${PROJECT_NAME}-test)
+#   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
+# endif()
+
+## Add folders to be run by python nosetests
+# catkin_add_nosetests(test)
+
+if(CATKIN_ENABLE_TESTING)
+
+  catkin_add_gtest(objects-prediction-tests
+      test/objects_prediction_tests.cpp
+  )
+  target_link_libraries(objects-prediction-tests 
+    ${PROJECT_NAME}_objects_prediction 
+    ${catkin_LIBRARIES}
+  )
+
+  catkin_add_gtest(objects-processors-tests
+      test/objects_processors_tests.cpp
+  )
+  target_link_libraries(objects-processors-tests
+    ${PROJECT_NAME}_objects_processors 
+    ${catkin_LIBRARIES}
+  )
+
+  catkin_add_gtest(feature-fusion-tests
+      test/feature_fusion_tests.cpp
+  )
+  target_link_libraries(feature-fusion-tests
+    ${PROJECT_NAME}_feature_fusion
+    ${catkin_LIBRARIES}
+  )
+
+  catkin_add_gtest(cost-functions-tests
+      test/cost_functions_tests.cpp
+  )
+  target_link_libraries(cost-functions-tests
+    ${PROJECT_NAME}_cost_functions
+    ${catkin_LIBRARIES}
+  )
+
+  catkin_add_gtest(weights-tests
+      test/weights_tests.cpp
+  )
+  target_link_libraries(weights-tests
+    ${PROJECT_NAME}_weights
+    ${catkin_LIBRARIES}
+  )
+
+endif()

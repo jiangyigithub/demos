@@ -1,0 +1,41 @@
+@startuml(id=object_processors) TrackToTrackFusion_Processors
+
+skinparam linetype ortho
+
+package object_processors <<Rectangle>> {
+
+    class ObjectsProcessor<TemplateType> {
+    + {abstract} process(TemplateType) : bool
+    }
+
+    class SingleObjectProcessor {
+    + {abstract} process( perception_kit_msgs::Object ) : bool
+    }
+
+    class ObjectListProcessor {
+    + {abstract} process( NonCopyableObjects ) : bool
+    }
+
+    class HeaderVerification<TemplateType> {
+    + process( TemplateType ) : bool
+    }
+
+    class ExistenceThresholdFilter {
+    + process( perception_kit_msgs::Object ) : bool
+    }
+
+    ObjectsProcessor <|-- SingleObjectProcessor
+    ObjectsProcessor <|-- ObjectListProcessor
+    ObjectsProcessor <|-- HeaderVerification
+    SingleObjectProcessor <|-- ExistenceThresholdFilter
+
+    FusionIntefacePreprocessor     *--  SingleObjectProcessor
+    FusionIntefacePreprocessor     *--  ObjectListProcessor
+    FusionIntefacePostprocessor    *--  SingleObjectProcessor
+    FusionIntefacePostprocessor    *--  ObjectListProcessor
+}
+
+!include fusion.plantuml!fusion
+
+
+@enduml

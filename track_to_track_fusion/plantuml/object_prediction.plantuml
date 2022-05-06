@@ -1,0 +1,31 @@
+@startuml(id=object_prediction) TrackToTrackFusion_Prediction
+
+' Comments are like this
+/' or several -
+lines like this '/
+
+skinparam linetype ortho
+
+package object_prediction <<Rectangle>> {
+
+    class ObjectsPredictor {
+     + {abstract} predict( NotCopyableObjects , Time )
+    }
+
+    class ConstantVelocityObjectPrediction {
+     + predict( NotCopyableObjects , Time )
+    }
+
+    ObjectsPredictor <|-- ConstantVelocityObjectPrediction
+}
+
+package fusion <<Rectangle>> {
+
+    class FusionInterface {
+     + setPredictor(ObjectsPredictor)
+    }
+
+    FusionInterface                *-right-  ObjectsPredictor
+}
+
+@enduml

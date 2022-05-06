@@ -1,0 +1,35 @@
+@startuml(id=fusion) TrackToTrackFusion_Fusion
+
+skinparam linetype ortho
+
+package fusion <<Rectangle>> {
+    class FusionInterfacePreprocessor {
+        + preprocess(perception_kit_msgs::Objects)
+        + registerPreprocessor( ObjectListProcessor )
+        + registerPreprocessor( SingleObjectProcessor )
+        + addInputData( perception_kit_msgs::Objects )
+        # getData() : NonCopyableObjects
+    '    - data : perception_kit_msgs::Objects
+    '    - preprocessed_data : NotCopyableObjects
+    }
+
+    class FusionInterfacePostprocessor {
+        + registerPreprocessor( ObjectListProcessor )
+        + registerPreprocessor( SingleObjectProcessor )
+        # postprocess( perception_kit_msgs::Objects )
+    }
+
+    class FusionInterface {
+        + init( set<SensorModalities> , ObjectFusionExecuter , CostFunction )
+        + fuse( Time ) : perception_kit_msgs:Objects
+        + setPredictor( ObjectsPredictor )
+        - predict( NonCopyableObjectsContainer, ros::Time )
+        - fusion_executer_ : ObjectFusionExecuter
+        - cost_function_ : CostFunction
+        - predictor_ : ObjectsPredictor
+    }
+
+    FusionInterfacePreprocessor  <|--  FusionInterface
+    FusionInterfacePostprocessor <|--  FusionInterface
+}
+@enduml

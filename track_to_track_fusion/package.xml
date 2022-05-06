@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>track_to_track_fusion</name>
+  <version>1.0.0</version>
+  <description>Distant object fusion - combining information from sensors like lidar and radar</description>
+
+  <maintainer email="TobiasBaer3@de.bosch.com">Tobias Bär</maintainer>
+  <maintainer email="Dennis.Nienhueser@de.bosch.com">Dennis Nienhüser</maintainer>
+
+  <license>BIOS v4</license>
+
+  <author email="Tobias.Baer3@de.bosch.com">Tobias Bär</author>
+  <author email="Olga.Haberby@de.bosch.com">Olga Haberny</author>
+  <author email="Dennis.Nienhueser@de.bosch.com">Dennis Nienhüser</author>
+
+  <depend>roscpp</depend>
+  <depend>visualization_msgs</depend>
+  <depend>perception_kit_msgs</depend>
+
+  <!-- ROS1 related -->
+  <buildtool_depend condition="$ROS_VERSION == 1">catkin</buildtool_depend>
+  <depend condition="$ROS_VERSION == 1">tf</depend>
+  <depend condition="$ROS_VERSION == 1">tf2_geometry_msgs</depend>
+  <depend condition="$ROS_VERSION == 1">tf2</depend>
+  <depend condition="$ROS_VERSION == 1">tf2_ros</depend>
+  <test_depend condition="$ROS_VERSION == 1">rosunit</test_depend>
+  <exec_depend condition="$ROS_VERSION == 1">rviz</exec_depend>
+
+  <!-- ROS2 related -->
+  <buildtool_depend  condition="$ROS_VERSION == 2">ament_cmake</buildtool_depend>
+
+  <export>
+    <build_type condition="$ROS_VERSION == 1">catkin</build_type>
+    <build_type condition="$ROS_VERSION == 2">ament_cmake</build_type>
+  </export>
+</package>

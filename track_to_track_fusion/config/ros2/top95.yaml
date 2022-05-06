@@ -1,0 +1,40 @@
+fusion_node:
+  ros__parameters:
+    inputs:
+      sensor_names: ['radar', 'lidar', 'camera']
+      radar:
+        min_existence_probability: 0.9
+        topic_name: '/perception/radar_gen5/tracks'
+      lidar:
+        min_existence_probability: 0.0
+        topic_name: '/perception/lidar/objects'
+      camera:
+        min_existence_probability: 0.3
+        topic_name: '/perception/camera/camera_01_01/objects_transform'
+    operation_frame: 'layered_map_enu'
+    output:
+      min_existence_probability: 0.3
+      topic_name: '/perception/fusion/objects'
+    use_sim_time: false
+
+# fusion_node:
+#   ros__parameters:
+#     inputs:
+#       radar:
+#         topic_name: /perception/radar_gen5/tracks
+#         min_existence_probability: 0.9
+#       lidar:
+#         topic_name: /perception/simulation/tracks
+#         min_existence_probability: 0.0
+
+#     output:
+#       topic_name: /obstacles/dynamic_difusion
+#       min_existence_probability: 0.3
+
+#     operation_frame: layered_map_enu
+
+      
+
+# /**:
+#   ros__parameters:
+#     debug: true

@@ -1,0 +1,103 @@
+@startuml(id=feature_fusion) TrackToTrackFusion_Feature
+
+skinparam linetype ortho
+
+package fusion <<Rectangle>> {
+
+    class FusionInterface {
+    }
+} 
+
+package feature_fusion <<Rectangle>> {
+    class ObjectFusionExecuter {
+        + ObjectFusionExecuter( map< Feature, ObjectFusion > , Weights , OperationToWeightsFrameFunction = Identitiy )
+        + fuse(CostCell, fused_object) : perception_kit_msgs::Object
+        + OperationToWeightsFrameFunction operation_to_weigths_frame
+    }
+
+    class Weights {
+
+        + setWeight( SensorModality , Feature , Weight )
+        + setWeight( SensorModality , Feature , PolygonInWeightsFrame , Weight )
+        + getWeight( SensorModality , Feature , PositionInWeightsFrame) : Weight
+        - getWeight( Trace , Feature , PositionInWeightsFrame) : Weight
+
+    }
+
+    class ObjectFusion {
+        + {abstract} fuse( Object , Object , Weight , Weight ) : Object
+    }
+
+    class DimensionFusion {
+        +  fuse( Object , Object , Weight , Weight ) : Object
+        #  {abstract} fuse( Object , Object , Weight , Weight ) : DimensionalFeature
+    }
+    class DimensionFusionWeightedNormalDistribution {
+        - fuse( Object , Object , Weight , Weight ) : DimensionalFeature
+    }
+
+    class ExitenceProbabilityFusion {
+        +  fuse( Object , Object , Weight , Weight ) : Object
+        #  {abstract} fuse( Object , Object , Weight , Weight ) : ExistenceFeature
+    }
+    class ExistenceProbabilityWeightedFusion {
+        -  fuse( Object , Object , Weight , Weight ) : ExistenceFeature
+    }
+    
+    class DynamicsFusion {
+        +  fuse( Object , Object , Weight , Weight ) : Object
+        #  {abstract} fuse( Object , Object , Weight , Weight ) : DynamicsFeature
+    }
+    class DynamicsFusionWeightedNormalDistribution {
+        - fuse( Object , Object , Weight , Weight ) : DynamicsFeature
+    }
+
+    class PoseFusion {
+        +  fuse( Object , Object , Weight , Weight ) : Object
+        #  {abstract} fuse( Object , Object , Weight , Weight ) : PositionFeature
+    }
+    class PoseFusionWeightedNormalDistribution {
+        - fuse( Object , Object , Weight , Weight ) : PositionFeature
+    }
+
+    class ClassificationFusion {
+        +  fuse( Object , Object , Weight , Weight ) : Object
+        #  {abstract} fuse( Object , Object , Weight , Weight ) : ClassificationFeature
+    }
+    class UnionClassificationFusion {
+        - fuse( Object , Object , Weight , Weight ) : ClassificationFeature
+    }
+
+    class OrientationFusion {
+        +  fuse( Object , Object , Weight , Weight ) : Object
+        #  {abstract} fuse( Object , Object , Weight , Weight ) : OrientationFeature
+    }
+    class OrientationFusionWeightedNormalDistribution {
+        -  fuse( Object , Object , Weight , Weight ) : OrientationFeature
+    }
+
+    FusionInterface *-right- ObjectFusionExecuter
+
+    ObjectFusionExecuter *-right- ObjectFusion
+    ObjectFusionExecuter *-- Weights
+
+    ObjectFusion <|-- DimensionFusion 
+    DimensionFusion <|-- DimensionFusionWeightedNormalDistribution
+
+    ObjectFusion <|-- ExitenceProbabilityFusion
+    ExitenceProbabilityFusion <|-- ExistenceProbabilityWeightedFusion
+
+    ObjectFusion <|-- DynamicsFusion
+    DynamicsFusion <|-- DynamicsFusionWeightedNormalDistribution
+
+    ObjectFusion <|-- PoseFusion
+    PoseFusion <|-- PoseFusionWeightedNormalDistribution
+
+    ObjectFusion <|-- OrientationFusion
+    OrientationFusion <|-- OrientationFusionWeightedNormalDistribution
+
+    ObjectFusion <|-- ClassificationFusion
+    ClassificationFusion <|-- UnionClassificationFusion
+
+}
+@enduml

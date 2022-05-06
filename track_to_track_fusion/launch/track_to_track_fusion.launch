@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="launch_prefix" default="" />
+  <arg name="config_file" default="$(find track_to_track_fusion)/config/shuttle.yaml" />
+  <arg name="weights_file" default="" />
+
+  <node name="track_to_track_fusion" pkg="track_to_track_fusion" type="track_to_track_fusion_node" output="screen" launch-prefix="$(arg launch_prefix)">
+    <rosparam command="load" file="$(arg config_file)" />
+    <rosparam command="load" file="$(arg weights_file)" />
+  </node>
+
+</launch>
